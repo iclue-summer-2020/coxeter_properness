@@ -8,6 +8,7 @@
 #include <ostream>
 #include <set>
 #include <vector>
+#include <fstream>
 
 #include <coxeter/coxtypes.h>
 #include <coxeter/coxgroup.h>

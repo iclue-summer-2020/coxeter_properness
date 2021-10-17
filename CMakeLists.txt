@@ -114,12 +114,6 @@ FetchContent_Declare(
 )
 
 FetchContent_Declare(
-    lib7zip
-    GIT_REPOSITORY https://github.com/stonewell/lib7zip
-    GIT_TAG master
-)
-
-FetchContent_Declare(
     indicators
     GIT_REPOSITORY https://github.com/p-ranav/indicators
     GIT_TAG v2.2
@@ -189,13 +183,6 @@ if (NOT prettyprint_POPULATED)
     # This is overkill since we only need a single file. Though it is a clean solution.
     add_library(prettyprint INTERFACE)
     target_include_directories(prettyprint INTERFACE ${prettyprint_SOURCE_DIR})
-endif()
-
-# Adds 7zip
-FetchContent_GetProperties(lib7zip)
-if(NOT lib7zip_POPULATED)
-    FetchContent_Populate(lib7zip)
-    add_subdirectory(${lib7zip_SOURCE_DIR} ${lib7zip_BINARY_DIR})
 endif()
 
 ######## Special ... ##########

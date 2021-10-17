@@ -1,6 +1,5 @@
 add_executable(run run.cc)
 target_link_libraries(run PRIVATE
-    Boost::boost
     coxeter
     coxeter-properness
     gflags::gflags
