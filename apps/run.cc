@@ -23,7 +23,7 @@
 DEFINE_string(type, "", "type");
 DEFINE_uint32(rank, 0, "rank");
 DEFINE_string(in_file, "", "in-file");
-DEFINE_string(out_dir, "", "out-dir");
+DEFINE_string(out_file, "", "out-file");
 
 using coxeter_properness::Transformer;
 using coxeter_properness::proper;
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
   const auto type = FLAGS_type;
   const auto rank = FLAGS_rank;
   const auto in_file = FLAGS_in_file;
-  const auto out_file = FLAGS_out_dir;
+  const auto out_file = FLAGS_out_file;
 
   if (type.empty() || rank == 0 || in_file.empty() || out_file.empty()) {
     std::cout << "Need to set each of --type, --rank, --out-file, and --in-file flags." << std::endl;

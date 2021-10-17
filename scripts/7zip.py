@@ -9,6 +9,7 @@ import tempfile
 from typing import IO, Any, Final, List, Optional, Text, Union
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
+from tqdm import tqdm
 
 import py7zr
 from halo import Halo
@@ -32,20 +33,18 @@ class ProcessInfo:
 def process(info: ProcessInfo) -> None:
   with tempfile.TemporaryDirectory() as temp_dirname:
     with Halo(text=f"extracting {info.in_path} from {info.archive}"):
-      with py7zr.SevenZipFile(info.in_path, mode='r') as z:
+      with py7zr.SevenZipFile(info.archive, mode='r') as z:
         z.extract(path=temp_dirname, targets=[info.in_path])
     
-    # temp_path = pathlib.Path(f"{temp_dirname}/{file_info.filename}")
 
     with Halo(text=f"processing {info.in_path}") as spinner:
-      # out_path = pathlib.Path(f"{out_dir.resolve()}/{file_info.filename}")
       process = subprocess.run([
         RUN,
         "--type", info.coxeter_type,
         "--rank", str(info.rank),
-        "--in-file", info.in_path,
+        "--in-file", f"{temp_dirname}/{info.in_path}",
         "--out-file", info.out_path,
-      ])
+      ], capture_output=True)
 
     if process.returncode != 0:
       logger.error(f"something went wrong:\n\t{process.args=}\n\t{process.stdout=!r}\n\t{process.stderr=!r}")
@@ -56,11 +55,11 @@ def process(info: ProcessInfo) -> None:
 
 
 def main(args: argparse.Namespace) -> None:
-  in_file: pathlib.Path = args.in_file
+  archive: pathlib.Path = args.archive
   out_dir: pathlib.Path = args.out_dir
   start_time = dt.datetime.now()
 
-  with py7zr.SevenZipFile(in_file, mode='r') as z:
+  with py7zr.SevenZipFile(archive, mode='r') as z:
     infos = z.list()
   
   file_infos = sorted([
@@ -68,16 +67,21 @@ def main(args: argparse.Namespace) -> None:
         coxeter_type=args.type,
         rank=args.n,
         in_path=info.filename,
-        out_path=f"{out_dir.resolve().name}/{info.filename}",
-        archive=in_file.resolve().name,
+        out_path=f"{out_dir}/{info.filename}.out",
+        archive=str(archive)
       )
       for info in infos
     ], key=lambda info: int(info.in_path[3:])
   )
     
-  with Halo(text="processing {args.type}{args.n}") as spinner:
-    with ThreadPoolExecutor() as pool:
-      pool.map(process, file_infos)
+  with Halo(text=f"processing {args.type}{args.n}") as spinner:
+    if args.max_workers == 1:
+      for raw_info in tqdm(file_infos, desc="processing info"):
+        info: ProcessInfo = raw_info
+        process(info)
+    else:
+      with ThreadPoolExecutor(max_workers=args.max_workers or None) as pool:
+        pool.map(process, file_infos)
 
   end_time = dt.datetime.now()
   elapsed_time = end_time - start_time
@@ -95,10 +99,13 @@ if __name__ == '__main__':
     '-n', type=int, required=True, help='n',
   )
   parser.add_argument(
-    '--in-file', type=pathlib.Path, required=True, help='File to read elements',
+    '--archive', type=pathlib.Path, required=True, help='File to read elements',
   )
   parser.add_argument(
     '--out-dir', type=pathlib.Path, required=True, help='File to store results',
+  )
+  parser.add_argument(
+    '--max-workers', type=int, default=1, help='max parallel workers',
   )
   args = parser.parse_args()
   main(args)
