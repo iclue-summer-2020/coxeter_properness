@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/_deps/catch2-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/_deps/gflags-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/_deps/gflags-src/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/_deps/pybind-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/_deps/pybind-src/tools/clang" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.5/_deps/catch2-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.5/_deps/discreture-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.5/_deps/lrcalc-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.5/_deps/pybind-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.5/_deps/pybind-src/tools/clang" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.6/_deps/catch2-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.6/_deps/discreture-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.6/_deps/gflags-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.6/_deps/gflags-src/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.6/_deps/lrcalc-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.6/_deps/pybind-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/temp.linux-x86_64-3.6/_deps/pybind-src/tools/clang" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/catch2-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/cppitertools-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/discreture-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/gflags-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/gflags-src/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/lrcalc-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/nlnum-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/prettyprint-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/pybind-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/pybind-src/tools/clang" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/catch2-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/cppitertools-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/discreture-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/gflags-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/gflags-src/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/lrcalc-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/nlnum-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/prettyprint-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/pybind-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/pybind-src/tools/clang" vcs="Git" />
+  </component>
+</project>
