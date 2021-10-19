@@ -35,7 +35,7 @@ def process(info: ProcessInfo) -> None:
     with Halo(text=f"extracting {info.in_path} from {info.archive}"):
       with py7zr.SevenZipFile(info.archive, mode='r') as z:
         z.extract(path=temp_dirname, targets=[info.in_path])
-    
+
 
     with Halo(text=f"processing {info.in_path}") as spinner:
       process = subprocess.run([
@@ -57,12 +57,13 @@ def process(info: ProcessInfo) -> None:
 def main(args: argparse.Namespace) -> None:
   archive: pathlib.Path = args.archive
   out_dir: pathlib.Path = args.out_dir
+  only_one: Optional[int] = args.only_one
   start_time = dt.datetime.now()
 
   with py7zr.SevenZipFile(archive, mode='r') as z:
     infos = z.list()
-  
-  file_infos = sorted([
+
+  raw_file_infos = sorted([
       ProcessInfo(
         coxeter_type=args.type,
         rank=args.n,
@@ -71,9 +72,16 @@ def main(args: argparse.Namespace) -> None:
         archive=str(archive)
       )
       for info in infos
-    ], key=lambda info: int(info.in_path[3:])
+    ],
+    key=lambda info: int(info.in_path[3:])
   )
-    
+
+  file_infos = [
+    pinfo
+    for pinfo in raw_file_infos
+    if only_one is not None and pinfo.in_path.endswith(str(only_one))
+  ]
+
   with Halo(text=f"processing {args.type}{args.n}") as spinner:
     if args.max_workers == 1:
       for raw_info in tqdm(file_infos, desc="processing info"):
@@ -86,7 +94,7 @@ def main(args: argparse.Namespace) -> None:
   end_time = dt.datetime.now()
   elapsed_time = end_time - start_time
   spinner.succeed(f"finished in {elapsed_time.seconds}s")
-    
+
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(
@@ -106,6 +114,9 @@ if __name__ == '__main__':
   )
   parser.add_argument(
     '--max-workers', type=int, default=1, help='max parallel workers',
+  )
+  parser.add_argument(
+    '--only-one', type=int, help='if non-None, only runs the one length specified'
   )
   args = parser.parse_args()
   main(args)
