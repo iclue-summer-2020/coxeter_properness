@@ -2,6 +2,7 @@
 
 # coxeter-properness
 
+Code for enumerating elements of finite Coxeter groups - paper TBA
 
 Read [this document](https://cliutils.gitlab.io/modern-cmake/chapters/basics/structure.html) to understand the project
 layout.
