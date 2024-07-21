@@ -2,7 +2,9 @@
 
 # coxeter-properness
 
-Code for enumerating elements of finite Coxeter groups - paper TBA
+Code for enumerating elements of finite Coxeter groups - [Proper elements of Coxeter groups](https://arxiv.org/abs/2111.15105)
+
+See code for smaller groups: [https://github.com/iclue-summer-2020/coxeter-properness](https://github.com/iclue-summer-2020/coxeter-properness)
 
 Read [this document](https://cliutils.gitlab.io/modern-cmake/chapters/basics/structure.html) to understand the project
 layout.
